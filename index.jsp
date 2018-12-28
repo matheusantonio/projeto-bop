@@ -11,18 +11,13 @@
         <%@ page import="java.util.List"%>
 
         <title>Sistema de BOP</title>
+        
 
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
         <script src="http://code.jquery.com/jquery-latest.js"></script>
-        <script>
-            $(document).ready(function() {
-                $('#submit').click(function(event) {
-                    var username=$('#user').val();
-                 $.get('ServiceGetter',{user:username},function(responseText) {
-                        $('#welcometext').text(responseText);
-                    });
-                });
-            });
-        </script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+        
         
 
     </head>
@@ -45,16 +40,53 @@
             //out.println(ServiceGetter.loadAPI());
         %>
 
-        <form id="form1">
-        <h2>APIs:</h2>
-        <input type="button" id="submit" value="Carregar APIs"/>
-        <br/>
-        <div id="welcometext">
-        </div>
-        </form>
+        <div id="root"></div>
+        
+        <script type="text/babel">
 
-        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        
+            class APILoader extends React.Component {
+                
+                
+                constructor(props) {
+                    super(props);
+                    this.state = { apistring : "" };
+                }
+
+                tick() {
+
+                    $.get("ServiceGetter", function(data, textStatus) {
+                    }, "text").then((data) => {
+                        this.setState(state => ({
+                            apistring : data
+                        }));
+                    });
+
+                    
+                }
+                
+                componentDidMount() {
+                    this.interval = setInterval(() => this.tick(), 1000);
+                }
+                
+                componentWillUnmount() {
+                    clearInterval(this.interval);
+                }
+                
+                render() {
+                    return (
+                    <div>
+                        <br/>
+                        Return String: {this.state.apistring}
+                    </div>
+                    );
+                }
+                }
+                ReactDOM.render(
+                    <div><APILoader/></div>,
+                    document.getElementById('root')
+                );
+        </script>
 
     </body>
 
