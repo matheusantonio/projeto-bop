@@ -23,3 +23,11 @@ Alterar a implementação utilizando java.util.ServiceLoader, de forma que a man
 O método loadAPI da classe DBConfig chama o método da classe Requester após importá-la pelo Class.forName.
 Para essa tarefa, uma segunda biblioteca, githubrequester.jar, foi criada para adequar-se aos requisitos do uso da classe ServiceLoader. Para realizar a tarefa, foi utilizada a API Coindesk (https://api.coindesk.com/v1/bpi/currentprice/BRL.json) para retornar o valor da moeda Bitcoin em reais no momento da requisição.
 A classe DBConfig, através do método loadAPI2, realiza essa função, adicionando os resultados das chamadas em uma lista de Strings.
+
+===============================================================================================
+4a Tarefa:
+=> Implementar na biblioteca algum método que acesse a internet de tempos em tempos e busque alguma informação que altere com frequência, como cotação diária do dólar, temperatura atual numa dada cidade, ou alguma outra coisa do tipo que altere com frequência maior 
+=> Usar AJAX para atualização assíncrona da página, baseada no retorno deste novo método
+=> Consultar o Github para ver como realizar chamadas JS para esta tarefa
+
+Foi utilizado jquery para fazer a requisição no javascript da API e React, usando a função setInterval, para definir um intervalo de tempo em que as APIs seriam requisitadas.
