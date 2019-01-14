@@ -4,6 +4,7 @@
 
         <%@ page import="config.DBConfig"%>
         <%@ page import="dao.NotasDAO"%>
+        <%@ page import="dao.MongoDAO"%>
         <%@ page import="entidade.Nota"%>
         <%@ page import="com.uff.bop.loader.ServiceGetter"%>
         
@@ -24,6 +25,7 @@
 
     <body>
         <h1>Bem vindo ao sistema de BOP!</h1></br>
+        <h2>Acesso com mysql:</h2>
 
         <% 
             /*   
@@ -40,13 +42,26 @@
             //out.println(ServiceGetter.loadAPI());
         %>
 
+        <h2>Acesso com Mongodb:</h2>
+
+        <%
+            List<Nota> listMongo = new ArrayList<>();
+
+            listMongo = MongoDAO.listarNotas();
+
+            for(Nota n : list){
+                out.println("<li>" + n.getId() + " " + 
+                                     n.getTitulo() + " " + 
+                                     n.getDescricao() + "</li>");
+            }
+        %>
+
+
         <div id="root"></div>
         
         <script type="text/babel">
 
-        
             class APILoader extends React.Component {
-                
                 
                 constructor(props) {
                     super(props);
@@ -61,8 +76,6 @@
                             apistring : data
                         }));
                     });
-
-                    
                 }
                 
                 componentDidMount() {
@@ -81,11 +94,13 @@
                     </div>
                     );
                 }
+
                 }
                 ReactDOM.render(
                     <div><APILoader/></div>,
                     document.getElementById('root')
                 );
+
         </script>
 
     </body>
