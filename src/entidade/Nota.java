@@ -2,18 +2,18 @@ package entidade;
 
 public class Nota {
 
-    private int id;
+    private int id_note;
 
     private String titulo;
 
     private String descricao;
 
     public int getId(){
-        return id;
+        return id_note;
     }
 
     public void setId(int id){
-        this.id = id;
+        this.id_note = id;
     }
 
     public String getTitulo(){
