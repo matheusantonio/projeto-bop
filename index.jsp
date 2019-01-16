@@ -49,7 +49,7 @@
 
             listMongo = MongoDAO.listarNotas();
 
-            for(Nota n : list){
+            for(Nota n : listMongo){
                 out.println("<li>" + n.getId() + " " + 
                                      n.getTitulo() + " " + 
                                      n.getDescricao() + "</li>");
