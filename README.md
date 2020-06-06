@@ -1,5 +1,5 @@
 # Projeto BOP
-* Arquivos de treinamento para o projeto BOP *
+*Arquivos de treinamento para o projeto BOP*
 
 O treinamento foi composto de diversas tarefas para praticar conceitos que poderiam ser utilizados no projeto.  
 Quando essas tarefas estavam sendo feitos, ainda estava ocorrendo o estudo do domínio e não sabíamos exatamente
